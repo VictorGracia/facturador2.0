@@ -53,7 +53,7 @@ export default function Sidebar() {
       <GlobalStyles
         styles={(theme) => ({
           ':root': {
-            '--Sidebar-width': '220px',
+            '--Sidebar-width': '300px',
             [theme.breakpoints.up('lg')]: {
               '--Sidebar-width': '240px',
             },
@@ -80,12 +80,12 @@ export default function Sidebar() {
         onClick={() => closeSidebar()}
       />
       <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-        <IconButton variant="soft" color="primary" size="sm">
+        {/* <IconButton variant="soft" color="primary" size="sm"> */}
           {/* <BrightnessAutoRoundedIcon />
            */}
                  {/* <Img src={Logo} /> */}
 
-        </IconButton>
+        {/* </IconButton> */}
         <Typography level="title-lg">Factura Col.</Typography>
         <ColorSchemeToggle sx={{ ml: 'auto' }} />
       </Box>
@@ -111,7 +111,7 @@ export default function Sidebar() {
           }}
         >
           <ListItem>
-            <ListItemButton>
+            <ListItemButton onClick={() => (window.location.href = './home')}>
               <HomeRoundedIcon />
               <ListItemContent>
                 <Typography level="title-sm">Home</Typography>
@@ -120,10 +120,10 @@ export default function Sidebar() {
           </ListItem>
 
           <ListItem>
-            <ListItemButton>
+            <ListItemButton onClick={() => (window.location.href = './facturador')}>
               <DashboardRoundedIcon />
               <ListItemContent>
-                <Typography level="title-sm">Vinculaciones</Typography>
+                <Typography level="title-sm">Facturador electrónico</Typography>
               </ListItemContent>
             </ListItemButton>
           </ListItem>

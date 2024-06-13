@@ -19,6 +19,7 @@ import {
 } from "@azure/msal-browser";
 import { msalConfig } from "./config/authConfig";
 import { MsalProvider } from "@azure/msal-react";
+import App from "./App";
 const msalInstance = new PublicClientApplication(msalConfig);
 
 //get initialize msalInstance
@@ -52,17 +53,25 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
+  //   <React.StrictMode>
+  //     <BrowserRouter>
+  //       <MaterialCssVarsProvider theme={{ [MATERIAL_THEME_ID]: materialTheme }}>
+  //         <JoyProvider>
+  //           <MsalProvider instance={msalInstance}>
+  //             <Login />
+  //           </MsalProvider>
+  //         </JoyProvider>
+  //       </MaterialCssVarsProvider>
+  //     </BrowserRouter>
+  //   </React.StrictMode>
   <React.StrictMode>
-    <BrowserRouter>
+    <JoyProvider>
       <MaterialCssVarsProvider theme={{ [MATERIAL_THEME_ID]: materialTheme }}>
-        <JoyProvider>
-          <MsalProvider instance={msalInstance}>
-            <Login />
-          </MsalProvider>
-        </JoyProvider>
+        <App />
       </MaterialCssVarsProvider>
-    </BrowserRouter>
+    </JoyProvider>
   </React.StrictMode>
+
 );
 
 // If you want your app to work offline and load faster, you can change

@@ -5,6 +5,7 @@ import Typography from '@mui/joy/Typography';
 import Sidebar from '../components/layout/Sidebar';
 import Header from '../components/layout/Header';
 import CustomBreadcrumbs from '../components/layout/breadcrumsContainer';
+import HomeContent from '../components/home/home';
 
 const HomePage = () => {
     return (
@@ -49,6 +50,7 @@ const HomePage = () => {
                             Home
                         </Typography>
                     </Box>
+                    <HomeContent/>
                 </Box>
             </Box>
         </CssVarsProvider>
