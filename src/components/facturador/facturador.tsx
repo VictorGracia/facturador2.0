@@ -43,12 +43,12 @@ const FacturadorContent = () => {
 
 const InfoCard = ({ title, value, href, action, chartData, color }: any) => {
     return (
-        <Card variant="outlined" sx={{ minWidth: '250px', flex: 1, boxShadow: 'sm' }}>
+        <Card variant="plain" sx={{ minWidth: '250px', flex: 1, boxShadow: 'lg' }} >
             <Typography level="h4" component="div">
                 {title}
             </Typography>
             <Box sx={{ flexGrow: 1 }}>
-                <SparkLineChart data={chartData} height={80} sx={{color:color}} />
+                <SparkLineChart data={chartData} height={80}/>
             </Box>
             <Typography level="h2" component="div" sx={{ mt: 2, textAlign:"center"}}>
                 {value}
