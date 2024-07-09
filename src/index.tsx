@@ -53,17 +53,6 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  //   <React.StrictMode>
-  //     <BrowserRouter>
-  //       <MaterialCssVarsProvider theme={{ [MATERIAL_THEME_ID]: materialTheme }}>
-  //         <JoyProvider>
-  //           <MsalProvider instance={msalInstance}>
-  //             <Login />
-  //           </MsalProvider>
-  //         </JoyProvider>
-  //       </MaterialCssVarsProvider>
-  //     </BrowserRouter>
-  //   </React.StrictMode>
   <React.StrictMode>
     <JoyProvider>
       <MaterialCssVarsProvider theme={{ [MATERIAL_THEME_ID]: materialTheme }}>

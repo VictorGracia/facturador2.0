@@ -3,6 +3,7 @@ import Card from '@mui/joy/Card';
 import Typography from '@mui/joy/Typography';
 import Link from '@mui/joy/Link';
 import { SparkLineChart } from '@mui/x-charts';
+import { Divider, Grid, useMediaQuery, useTheme } from '@mui/material';
 
 const data = {
     facturas: { value: 1200, chartData: [5, 10, 15, 5, 25, 30, 35, 40], color: '#FF5722' },
@@ -42,20 +43,29 @@ const FacturadorContent = () => {
 }
 
 const InfoCard = ({ title, value, href, action, chartData, color }: any) => {
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
     return (
         <Card variant="plain" sx={{ minWidth: '250px', flex: 1, boxShadow: 'lg' }} >
             <Typography level="h4" component="div">
                 {title}
             </Typography>
-            <Box sx={{ flexGrow: 1 }}>
-                <SparkLineChart data={chartData} height={80}/>
-            </Box>
-            <Typography level="h2" component="div" sx={{ mt: 2, textAlign:"center"}}>
-                {value}
-            </Typography>
-            <Link href={href} sx={{ mt: 2, fontWeight:"lg", display:"flex", justifyContent:"center", textAlign:"center"}}>
-                {action}
-            </Link>
+            <Grid container>
+                <Grid item xs={6} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                    <SparkLineChart data={chartData} height={isMobile ? 40 : 80} />
+                </Grid>
+                <Grid item xs={6}>
+                    <Typography level="h2" fontWeight={600} component="div" sx={{ mt: 2, textAlign: "center" }}>
+                        {value}
+                    </Typography>
+                </Grid>
+                <Divider />
+                <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
+                    <Link href={href} sx={{ mt: 1, fontWeight: "lg", display: "flex", justifyContent: "center", textAlign: "center" }}>
+                        {action}
+                    </Link>
+                </Grid>
+            </Grid>
         </Card>
     );
 }
