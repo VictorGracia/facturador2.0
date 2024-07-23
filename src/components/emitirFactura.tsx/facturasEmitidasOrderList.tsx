@@ -22,80 +22,45 @@ import CategoryIcon from '@mui/icons-material/Category';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
-const tableData = [
-    {
-        id: 1,
-        codigo: "P001",
-        nombre: "Producto A",
-        unidadMedida: "NIU",
-        precioUnitario: '$ 2.000 COP',
-        iva: 19,
-        inc: 8,
-        estadoInterno: "Activo",
-        estadoDIAN: "Aprobado",
-        validadoDIAN: true,
-        fechaCreacion: "2024-07-20"
-    },
-    {
-        id: 2,
-        codigo: "P002",
-        nombre: "Producto B",
-        unidadMedida: "NIU",
-        precioUnitario: '$ 2.000 COP',
-        iva: 19,
-        inc: 8,
-        estadoInterno: "Inactivo",
-        estadoDIAN: "Pendiente",
-        validadoDIAN: false,
-        fechaCreacion: "2024-07-18"
-    },
-    {
-        id: 3,
-        codigo: "P003",
-        nombre: "Producto C",
-        unidadMedida: "Litros",
-        precioUnitario: '$ 3.500 COP',
-        iva: 19,
-        inc: 10,
-        estadoInterno: "Activo",
-        estadoDIAN: "Aprobado",
-        validadoDIAN: true,
-        fechaCreacion: "2024-07-22"
-    },
-    {
-        id: 4,
-        codigo: "P004",
-        nombre: "Producto D",
-        unidadMedida: "Kilogramos",
-        precioUnitario: '$ 5.000 COP',
-        iva: 19,
-        inc: 12,
-        estadoInterno: "Inactivo",
-        estadoDIAN: "Pendiente",
-        validadoDIAN: false,
-        fechaCreacion: "2024-07-15"
-    }
-];
-
-function RowMenu() {
-    return (
-        <Dropdown>
-            <MenuButton
-                slots={{ root: IconButton }}
-                slotProps={{ root: { variant: 'plain', color: 'neutral', size: 'sm' } }}
-            >
-                <MoreHorizRoundedIcon />
-            </MenuButton>
-            <Menu size="sm" sx={{ minWidth: 140 }}>
-                <MenuItem>Editar</MenuItem>
-                <Divider />
-                <MenuItem color="danger">Delete</MenuItem>
-            </Menu>
-        </Dropdown>
-    );
-}
-
-const OrderListProductos = () => {
+const FacturasEmitidasOrderList = () => {
+    const tableData = [
+        {
+            id: 1,
+            fechaEmision: "2024-07-20",
+            nitReceptor: "900123456",
+            razonSocialReceptor: "Comercial ABC S.A.S.",
+            monto: "$ 10.000.000 COP",
+            estadoDIAN: "Aprobado",
+            validacionDIAN: true
+        },
+        {
+            id: 2,
+            fechaEmision: "2024-07-18",
+            nitReceptor: "900654321",
+            razonSocialReceptor: "Servicios XYZ Ltda.",
+            monto: "$ 5.000.000 COP",
+            estadoDIAN: "Pendiente",
+            validacionDIAN: false
+        },
+        {
+            id: 3,
+            fechaEmision: "2024-07-15",
+            nitReceptor: "901234567",
+            razonSocialReceptor: "Distribuciones LMN S.A.",
+            monto: "$ 8.000.000 COP",
+            estadoDIAN: "Aprobado",
+            validacionDIAN: true
+        },
+        {
+            id: 4,
+            fechaEmision: "2024-07-10",
+            nitReceptor: "901876543",
+            razonSocialReceptor: "Alimentos PQR S.A.S.",
+            monto: "$ 12.000.000 COP",
+            estadoDIAN: "Pendiente",
+            validacionDIAN: false
+        }
+    ];
     return (
         <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
             {tableData.map((listItem) => (
@@ -121,14 +86,17 @@ const OrderListProductos = () => {
                             </ListItemDecorator>
                             <div>
                                 <Typography fontWeight={600} gutterBottom>
-                                    {listItem.nombre} - {listItem.codigo}
+                                    {listItem.razonSocialReceptor} - {listItem.nitReceptor}
                                 </Typography>
                                 <Typography level="body-xs" gutterBottom>
-                                    {listItem.precioUnitario} | IVA {listItem.iva} % | INC {listItem.inc} | Creado {listItem.fechaCreacion}
+                                    {listItem.monto} | IVA 19 % | INC 8 %
+                                </Typography>
+                                <Typography level="body-xs" gutterBottom>
+                                    Emisión {listItem.fechaEmision}
                                 </Typography>
                                 <Typography level="body-xs" sx={{ display: 'flex', alignItems: 'center' }}>
                                     Validado DIAN
-                                    {(listItem.validadoDIAN) ? (
+                                    {(listItem.validacionDIAN) ? (
                                         <CheckCircleIcon color='success' sx={{ fontSize: '12px' }} />
                                     ) : (
                                         <ErrorOutlineIcon color='error' sx={{ fontSize: '12px' }} />
@@ -136,11 +104,11 @@ const OrderListProductos = () => {
 
                                     | Estado interno
                                     <Chip
-                                        color={listItem.estadoInterno === "Activo" ? "success" : "danger"}
+                                        color={listItem.estadoDIAN === "Activo" ? "success" : "danger"}
                                         size="sm"
                                         variant="soft"
                                     >
-                                        {listItem.estadoInterno}
+                                        {listItem.estadoDIAN}
                                     </Chip>
                                 </Typography>
 
@@ -152,12 +120,6 @@ const OrderListProductos = () => {
                                 </Box>
                             </div>
                         </ListItemContent>
-                        {/* <Chip
-                            variant="soft"
-                            size="sm"
-                            color={listItem.estado === "Activo" ? "success" : "danger"}>
-                            {listItem.estado}
-                        </Chip> */}
                     </ListItem>
                     <ListDivider />
                 </List>
@@ -190,4 +152,23 @@ const OrderListProductos = () => {
     );
 }
 
-export default OrderListProductos;
+
+function RowMenu() {
+    return (
+        <Dropdown>
+            <MenuButton
+                slots={{ root: IconButton }}
+                slotProps={{ root: { variant: 'plain', color: 'neutral', size: 'sm' } }}
+            >
+                <MoreHorizRoundedIcon />
+            </MenuButton>
+            <Menu size="sm" sx={{ minWidth: 140 }}>
+                <MenuItem>Editar</MenuItem>
+                <Divider />
+                <MenuItem color="danger">Delete</MenuItem>
+            </Menu>
+        </Dropdown>
+    );
+}
+
+export default FacturasEmitidasOrderList;

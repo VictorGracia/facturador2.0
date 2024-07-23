@@ -5,9 +5,9 @@ import Typography from '@mui/joy/Typography';
 import Sidebar from '../components/layout/Sidebar';
 import Header from '../components/layout/Header';
 import CustomBreadcrumbs from '../components/layout/breadcrumsContainer';
-import FacturadorContent from '../components/facturador/facturador';
+import FacturasEmitidasContent from '../components/emitirFactura.tsx/facturasEmitidas';
 
-const FacturadorPage = () => {
+const FacturasEmitidasPage = () => {
     return (
         <>
             <CssVarsProvider disableTransitionOnChange>
@@ -34,7 +34,7 @@ const FacturadorPage = () => {
                             gap: 1,
                         }}
                     >
-                        <CustomBreadcrumbs window='Inicio' href='/inicio' />
+                        <CustomBreadcrumbs window='Facturas emitidas' href='/facturas_emitidas' />
                         <Box
                             sx={{
                                 display: 'flex',
@@ -47,10 +47,10 @@ const FacturadorPage = () => {
                             }}
                         >
                             <Typography level="h2" component="h1">
-                                Inicio
+                                Facturas emitidas
                             </Typography>
                         </Box>
-                        <FacturadorContent />
+                        <FacturasEmitidasContent />
                     </Box>
                 </Box>
             </CssVarsProvider>
@@ -58,4 +58,4 @@ const FacturadorPage = () => {
     );
 }
 
-export default FacturadorPage;
+export default FacturasEmitidasPage;

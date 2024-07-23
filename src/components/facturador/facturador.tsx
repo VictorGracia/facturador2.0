@@ -20,10 +20,10 @@ const FacturadorContent = () => {
                 chartData={data.facturas.chartData}
                 color={data.facturas.color}
                 action={'Generar nuevo documento'}
-                href="/facturas"
+                href="/facturas_emitidas"
             />
             <InfoCard
-                title="Productos registrados"
+                title="Productos"
                 value={data.productos.value}
                 chartData={data.productos.chartData}
                 color={data.productos.color}

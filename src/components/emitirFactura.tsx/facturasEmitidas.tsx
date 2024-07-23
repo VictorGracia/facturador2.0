@@ -1,79 +1,73 @@
-import { Box, Button, Chip, Sheet, Table, Typography } from "@mui/joy";
-import { useState } from "react";
-import RegistrarNuevoProducto from "./registrarNuevoProducto";
+import { Box, Typography, Button, Sheet, Table, Chip } from "@mui/joy";
 import { OpenInNew } from "@mui/icons-material";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
-import OrderListProductos from "./productosList";
+import RegistrarNuevoProducto from "../productos/registrarNuevoProducto";
+import { useState } from "react";
+import RegistreNuevoClienteModal from "../clientes/registrarNuevoClienteModal";
+import FacturasEmitidasOrderList from "./facturasEmitidasOrderList";
+import { useNavigate } from "react-router-dom";
 
-export const ProductosContent = () => {
+const FacturasEmitidasContent = () => {
+    const navigate = useNavigate();
+    const tableData = [
+        {
+            id: 1,
+            fechaEmision: "2024-07-20",
+            nitReceptor: "900123456",
+            razonSocialReceptor: "Comercial ABC S.A.S.",
+            monto: "$ 10.000.000 COP",
+            estadoDIAN: "Aprobado",
+            validacionDIAN: true
+        },
+        {
+            id: 2,
+            fechaEmision: "2024-07-18",
+            nitReceptor: "900654321",
+            razonSocialReceptor: "Servicios XYZ Ltda.",
+            monto: "$ 5.000.000 COP",
+            estadoDIAN: "Pendiente",
+            validacionDIAN: false
+        },
+        {
+            id: 3,
+            fechaEmision: "2024-07-15",
+            nitReceptor: "901234567",
+            razonSocialReceptor: "Distribuciones LMN S.A.",
+            monto: "$ 8.000.000 COP",
+            estadoDIAN: "Aprobado",
+            validacionDIAN: true
+        },
+        {
+            id: 4,
+            fechaEmision: "2024-07-10",
+            nitReceptor: "901876543",
+            razonSocialReceptor: "Alimentos PQR S.A.S.",
+            monto: "$ 12.000.000 COP",
+            estadoDIAN: "Pendiente",
+            validacionDIAN: false
+        }
+    ];
     const [openCrearproducto, setOpenCrearproducto] = useState(false);
     const handleClickOopenCrearproducto = () => {
         setOpenCrearproducto(true);
     };
-    const tableData = [
-        {
-            id: 1,
-            codigo: "P001",
-            nombre: "Producto A",
-            unidadMedida: "NIU",
-            precioUnitario: '$ 2.000 COP',
-            iva: 19,
-            inc: 8,
-            estadoInterno: "Activo",
-            estadoDIAN: "Aprobado",
-            validadoDIAN: true,
-            fechaCreacion: "2024-07-20"
-        },
-        {
-            id: 2,
-            codigo: "P002",
-            nombre: "Producto B",
-            unidadMedida: "NIU",
-            precioUnitario: '$ 2.000 COP',
-            iva: 19,
-            inc: 8,
-            estadoInterno: "Inactivo",
-            estadoDIAN: "Pendiente",
-            validadoDIAN: false,
-            fechaCreacion: "2024-07-18"
-        },
-        {
-            id: 3,
-            codigo: "P003",
-            nombre: "Producto C",
-            unidadMedida: "NIU",
-            precioUnitario: '$ 3.500 COP',
-            iva: 19,
-            inc: 10,
-            estadoInterno: "Activo",
-            estadoDIAN: "Aprobado",
-            validadoDIAN: true,
-            fechaCreacion: "2024-07-22"
-        },
-        {
-            id: 4,
-            codigo: "P004",
-            nombre: "Producto D",
-            unidadMedida: "NIU",
-            precioUnitario: '$ 5.000 COP',
-            iva: 19,
-            inc: 12,
-            estadoInterno: "Inactivo",
-            estadoDIAN: "Pendiente",
-            validadoDIAN: false,
-            fechaCreacion: "2024-07-15"
-        }
-    ];
-
+    const [openNuevoCliente, setOpenNuevoCliente] = useState(false);
     return (
         <>
-            <Box sx={{ display: "flex" }}>
-                <Button onClick={handleClickOopenCrearproducto}>
+            <Box sx={{ display: "flex", gap: 1 }}>
+                <Button onClick={() => (navigate("/nueva_factura"))}>
+                    Nueva factura
+                </Button>
+                <Button variant="outlined" onClick={handleClickOopenCrearproducto}>
                     Nuevo producto
                 </Button>
+                <RegistrarNuevoProducto openCrearProducto={openCrearproducto} setOpenCrearProducto={setOpenCrearproducto} />
+                <Button variant="outlined" onClick={() => (setOpenNuevoCliente(true))}>
+                    Nueva cliente
+                </Button>
+                <RegistreNuevoClienteModal openNuevoCliente={openNuevoCliente} setOpenNuevoCliente={setOpenNuevoCliente} />
             </Box>
-            <RegistrarNuevoProducto openCrearProducto={openCrearproducto} setOpenCrearProducto={setOpenCrearproducto} />
             <Sheet
                 className="OrderTableContainer"
                 variant="outlined"
@@ -102,41 +96,34 @@ export const ProductosContent = () => {
                 >
                     <thead>
                         <tr>
-                            <th>Código</th>
-                            <th>Nombre</th>
-                            <th>U/M</th>
-                            <th>Precio unitario</th>
-                            <th>IVA</th>
-                            <th>INC</th>
-                            <th>Estado interno</th>
+                            <th>Fecha emisión</th>
+                            <th>Nit receptor</th>
+                            <th>Razón social receptor</th>
+                            <th>Monto</th>
                             <th>Estado DIAN</th>
-                            <th>Validado DIAN</th>
-                            <th>Fecha creación</th>
+                            <th>Validación DIAN</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         {tableData.map((row) => (
                             <tr key={row.id}>
-                                <td>{row.codigo}</td>
-                                <td>{row.nombre}</td>
-                                <td>{row.unidadMedida}</td>
-                                <td>{row.precioUnitario}</td>
-                                <td>{row.iva}%</td>
-                                <td>{row.inc}%</td>
+                                <td>{row.fechaEmision}</td>
+                                <td>{row.nitReceptor}</td>
+                                <td>{row.razonSocialReceptor}</td>
+                                <td>{row.monto}</td>
                                 <td>
                                     <Chip
-                                        color={row.estadoInterno === "Activo" ? "success" : "danger"}
+                                        color={row.estadoDIAN === "Aprobado" ? "success" : "danger"}
                                         size="md"
                                         variant="soft"
                                     >
-                                        {row.estadoInterno}
+                                        {row.estadoDIAN}
                                     </Chip>
                                 </td>
-                                <td>{row.estadoDIAN}</td>
                                 <td>
 
-                                    {(row.validadoDIAN) ? (
+                                    {(row.validacionDIAN) ? (
                                         <Typography color="success">
                                             <CheckCircleIcon />
                                         </Typography>
@@ -146,9 +133,8 @@ export const ProductosContent = () => {
                                             <ErrorOutlineIcon />
                                         </Typography>
                                     )}
-                                    {row.validadoDIAN}
+                                    {row.validacionDIAN}
                                 </td>
-                                <td>{row.fechaCreacion}</td>
                                 <td>
                                     <Button
                                         color="primary"
@@ -164,10 +150,9 @@ export const ProductosContent = () => {
                     </tbody>
                 </Table>
             </Sheet>
-            <OrderListProductos />
+            <FacturasEmitidasOrderList />
         </>
     );
-};
+}
 
-
-export default ProductosContent;
+export default FacturasEmitidasContent;

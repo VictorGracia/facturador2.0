@@ -1,4 +1,3 @@
-import * as React from 'react';
 import GlobalStyles from '@mui/joy/GlobalStyles';
 import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
@@ -16,7 +15,6 @@ import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
-import BrightnessAutoRoundedIcon from '@mui/icons-material/BrightnessAutoRounded';
 import ColorSchemeToggle from './ColorSchemeToggle';
 import { closeSidebar } from '../../utils';
 import styled from '@emotion/styled';
@@ -120,7 +118,7 @@ export default function Sidebar() {
           </ListItem>
 
           <ListItem>
-            <ListItemButton onClick={() => (window.location.href = './facturador')}>
+            <ListItemButton onClick={() => (window.location.href = './')}>
               <DashboardRoundedIcon />
               <ListItemContent>
                 <Typography level="title-sm">Facturador electrónico</Typography>
