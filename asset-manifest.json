@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/facturador2.0/static/css/main.f855e6bc.css",
+    "main.js": "/facturador2.0/static/js/main.c9753f8d.js",
+    "static/js/453.335a939d.chunk.js": "/facturador2.0/static/js/453.335a939d.chunk.js",
+    "index.html": "/facturador2.0/index.html",
+    "main.f855e6bc.css.map": "/facturador2.0/static/css/main.f855e6bc.css.map",
+    "main.c9753f8d.js.map": "/facturador2.0/static/js/main.c9753f8d.js.map",
+    "453.335a939d.chunk.js.map": "/facturador2.0/static/js/453.335a939d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f855e6bc.css",
+    "static/js/main.c9753f8d.js"
+  ]
+}
